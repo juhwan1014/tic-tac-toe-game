@@ -10,7 +10,7 @@
 //굳이, 콜백함수를 써야하는 이유는? 
 //예를들어 회사에 가서 A 라는 함수 뒤에 console.log("haha") 를 시행하고 싶어. 그런데 다른 사람은 console.log("hihi")를 시행하고 싶어
 //이렇게 여러 순서들이 겹칠 때에는 내 함수가 언제 어떻게 시행될지 장담하기 어렵다. 왜냐하면 함수의 크기(depending on function size)에 따라 시행속도(the speed of implementation)가 다르기 떄문이다.
-//그래서 어쨌든 
+
 
 window.addEventListener('DOMContentLoaded', () => {
     const tiles = Array.from(document.querySelectorAll('.tile'));
@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // When the user clicked on the tile, it is to record the information about which user clicked. 
     //유저카 타일을 클릭 할 떄, 어떤 유저가 클릭했는지를 기록
     let currentPlayer = 'X';
-    let isGameActive = true;
+    let isGameActive = true; //Is it okay if the game goes without any problems?
 
     const PLAYER_X_WON = 'PLAYER_X_WON';
     const PLAYER_O_WON = 'PLAYER_O_WON';
@@ -36,6 +36,11 @@ window.addEventListener('DOMContentLoaded', () => {
         [6] [7] [8]
     */
 
+    //we have three different winning condition.
+    //When some user eat the same tile horizontally 
+    //When some user eat the same tile vertically 
+    //When some user eat the same tile diagonally
+
     const winningConditions = [
         [0, 1, 2],
         [3, 4, 5],
@@ -48,12 +53,13 @@ window.addEventListener('DOMContentLoaded', () => {
     ];
 
     function handleResultValidation() {
-        let roundWon = false;
+        let roundWon = false; //라운드 피니시로 이름 바꿔도 될듯
         for (let i = 0; i <= 7; i++) {
             const winCondition = winningConditions[i];
             const a = board[winCondition[0]];
             const b = board[winCondition[1]];
             const c = board[winCondition[2]];
+            //If any of a,b,c, is empty, execute this if statement
             if (a === '' || b === '' || c === '') {
                 continue;
             }
@@ -109,7 +115,9 @@ window.addEventListener('DOMContentLoaded', () => {
         playerDisplay.classList.add(`player${currentPlayer}`);
     }
 
+
     const userAction = (tile, index) => {
+        //이 특정 타일이 이전에 클릭된건지 확인해 볼 필요가 있고, 게임이 문제 없이 진행되도 되는지
         if(isValidAction(tile) && isGameActive) {
             tile.innerText = currentPlayer; //이터 텍스트 엠프티 하니간 현재 플레이어를 여기다 저장
             tile.classList.add(`player${currentPlayer}`); //html 요소의 클래스 명을 바꾸거나 수정할때 쓰임
@@ -137,9 +145,13 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+
+    // 일단 클릭이 되야 트리거 되니까    첫빠따!!!
     tiles.forEach( (tile, index) => {
         tile.addEventListener('click', () => userAction(tile, index));
     });
+// 클릭 되면 어떤 일이 일어나야하지? 그 함수를 userAction 이라고 하자.
+
 
     resetButton.addEventListener('click', resetBoard);
 });

@@ -155,3 +155,103 @@ window.addEventListener('DOMContentLoaded', () => {
 
     resetButton.addEventListener('click', resetBoard);
 });
+
+
+
+//var , let , const
+
+//var : multiple declaration would be possible / Reallocateable
+//-> Last assigned value is stored in variable
+//-> Although it has the advantage of being used flexibly, it can be difficult to find bugs if the amount of code increases.
+
+//let: multiple declaration would not be possible /  Reallocateable
+
+//const : multiple declaration would not be possible /  Not Reallocateable
+
+
+
+
+
+
+//구문 정리
+//if, else 
+//and => &&
+//or => ||
+// switch(param){
+//     case a:
+//         asdasd
+//         break;
+//     case b:
+//         asdasdsad
+//         break;
+//     case c:
+//         sadasdasd
+// }
+
+
+
+
+
+// a === 20 ? true : false
+
+//if(a === 20){
+//     return true
+// } else{
+//     return false
+// }
+
+
+
+
+
+//함수표현 function declarations
+// function first() {
+//     sdaksdaskdaksd
+// }
+
+//function expression
+// const first = function() {} --> Anonymous Function
+// var first = () => {
+//     sadsdasdsd
+// }
+
+
+//what is defferent between these two?
+
+//For that we have to understand Hoisting.
+
+// Means that the interpreter preallocates memory space for variables and functions before declaring them. For variables declared as var, initialize the variable as undefined when hoisting. On the other hand, for variables declared as let and const, the variable is not initialized when hoisting.
+
+
+// messageFunction1();
+// messageFunction2();
+
+// function messageFunction1(){
+//   return 'hello world';
+// };
+
+// let messageFunction2 = function(){
+//   return 'hello world';
+// };
+
+
+// ---> 해석순서
+
+// function messageFunction1(){
+//     return 'hello world';
+//   };
+  
+//   let messageFuntion2;
+  
+//   messageFunction1(); // 'hello world'
+//   messageFunction2(); // 'messageFunction2' is not a function
+  
+//   messageFunction2 = function(){
+//     return 'hello world';
+//   };
+
+
+
+
+
+
